@@ -1,0 +1,94 @@
+service: adv-caja-x-api
+
+frameworkVersion: "=1.26.0"
+
+provider:
+  name: aws
+  runtime: go1.x
+  stage: ${opt:stage, 'dev'}
+  region: ap-southeast-2
+  memorySize: 128
+
+custom:
+  stageVariables:
+    env: ${self:provider.stage}
+  securityGroupIds: ${self:custom.${self:provider.stage}.securityGroupIds}
+  subnetIds: ${self:custom.${self:provider.stage}.subnetIds}
+  apiKeyId: ${env:API_KEY_ID}
+  dev:
+    securityGroupIds:
+      - sg-04b1ce60
+    subnetIds:
+      - subnet-5947a82f
+      - subnet-9a17d4fe
+  staging:
+    securityGroupIds:
+      - sg-04b1ce60
+    subnetIds:
+      - subnet-5947a82f
+      - subnet-9a17d4fe
+  customDomain:
+    domainName: caja-x-api.advertiser.dev.outfra.xyz
+    basePath: ''
+    stage: ${self:provider.stage}
+    createRoute53Record: true
+    certificateName: '*.advertiser.dev.outfra.xyz'
+
+plugins:
+  - serverless-plugin-stage-variables
+  - serverless-domain-manager
+
+package:
+ exclude:
+   - ./**
+ include:
+   - ./bin/**
+
+functions:
+  caja-x:
+    handler: bin/caja-x
+    integration: lambda-proxy
+    events:
+      - http: 
+          method: ANY 
+          path: /{proxy+}
+          private: true
+    environment:
+      AUTH0_DOMAIN: ${env:AUTH0_DOMAIN}
+      AUTH0_AUDIENCE: ${env:AUTH0_AUDIENCE}
+      TALAPI_BASE: ${env:TALAPI_BASE}
+      ALLOW_ORIGIN: ${env:ALLOW_ORIGIN}
+    vpc:
+      securityGroupIds: ${self:custom.securityGroupIds}
+      subnetIds: ${self:custom.subnetIds}
+
+resources:
+  Resources:
+    ApiGatewayStage:
+      Type: AWS::ApiGateway::Stage
+      Properties:
+        MethodSettings:
+          - DataTraceEnabled: true
+            HttpMethod: "*"
+            LoggingLevel: INFO
+            ResourcePath: "/*"
+            MetricsEnabled: true
+    UsagePlan:
+      Type: "AWS::ApiGateway::UsagePlan"
+      DependsOn: ApiGatewayRestApi
+      Properties:
+        UsagePlanName: ${self:provider.stage}-${self:service}
+        ApiStages:
+          - ApiId:
+              Ref: ApiGatewayRestApi
+            Stage: ${self:provider.stage}
+
+    UsagePlanKey:
+      Type: "AWS::ApiGateway::UsagePlanKey"
+      DependsOn: UsagePlan
+      Properties :
+        KeyId: ${self:custom.apiKeyId}
+        KeyType: API_KEY
+        UsagePlanId:
+          Ref: UsagePlan
+
