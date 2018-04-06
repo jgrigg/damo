@@ -1,12 +1,6 @@
 # Damo's thing
 
-## Build
-
-The build compiles a single binary that handles all lambda requests.
-
-```
-make build
-```
+you'll need `make` and `docker` to do dev things...
 
 ## Run
 
@@ -22,7 +16,7 @@ The lambda is configured with a few env vars see `serverless.yml`. To facilitate
 
 ## Deploy
 
-Need `go`, `dep` and `make` (will docker this up laterz)
+Deploy api to lambda.
 
 ```
 make deploy
