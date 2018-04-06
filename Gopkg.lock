@@ -9,12 +9,6 @@
 
 [[projects]]
   branch = "master"
-  name = "github.com/auth0-community/go-auth0"
-  packages = ["."]
-  revision = "9ebd072c579e8060c6d60690e9dffd3b79718992"
-
-[[projects]]
-  branch = "master"
   name = "github.com/aws/aws-lambda-go"
   packages = [
     "events",
@@ -29,12 +23,6 @@
   packages = ["spew"]
   revision = "346938d642f2ec3594ed81d874461961cd0faa76"
   version = "v1.1.0"
-
-[[projects]]
-  name = "github.com/go-errors/errors"
-  packages = ["."]
-  revision = "3afebba5a48dbc89b574d890b6b34d9ee10b4785"
-  version = "v1.0.0"
 
 [[projects]]
   name = "github.com/julienschmidt/httprouter"
@@ -55,45 +43,18 @@
   version = "v1.3.0"
 
 [[projects]]
-  name = "github.com/stretchr/objx"
-  packages = ["."]
-  revision = "facf9a85c22f48d2f52f2380e4efce1768749a89"
-  version = "v0.1"
-
-[[projects]]
   name = "github.com/stretchr/testify"
   packages = [
     "assert",
-    "mock",
     "require",
     "suite"
   ]
   revision = "12b6f73e6084dad08a7c6e575284b177ecafbc71"
   version = "v1.2.1"
 
-[[projects]]
-  branch = "master"
-  name = "golang.org/x/crypto"
-  packages = [
-    "ed25519",
-    "ed25519/internal/edwards25519"
-  ]
-  revision = "d9133f5469342136e669e85192a26056b587f503"
-
-[[projects]]
-  name = "gopkg.in/square/go-jose.v2"
-  packages = [
-    ".",
-    "cipher",
-    "json",
-    "jwt"
-  ]
-  revision = "f8f38de21b4dcd69d0413faf231983f5fd6634b1"
-  version = "v2.1.3"
-
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "721b32f229e20e1685d2f208739e956fb520287e88a6dd77e9b1cde6b7139879"
+  inputs-digest = "88936491ca4d15472614f1457938fc1dc17b55c4e33196356ecb747aa3b4b64c"
   solver-name = "gps-cdcl"
   solver-version = 1

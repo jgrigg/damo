@@ -24,10 +24,6 @@
   name = "github.com/aws/aws-lambda-go"
 
 [[constraint]]
-  branch = "master"
-  name = "github.com/auth0-community/go-auth0"
-
-[[constraint]]
   name = "github.com/gorilla/mux"
   version = "1.6.1"
 

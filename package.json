@@ -1,26 +1,9 @@
 {
-  "name": "serverless-adv-caja-x-api",
+  "name": "serverless-damo",
   "version": "1.0.0",
-  "description": "This is the experience api for Caja Express.",
-  "directories": {
-    "doc": "doc"
-  },
-  "dependencies": {
-    "artillery": "^1.6.0-13"
-  },
   "devDependencies": {
-    "serverless-plugin-stage-variables": "^1.7.9",
-    "serverless-domain-manager": "^2.3.3",
-    "artillery": "^1.6.0-13"
+    "serverless": "^1.26.1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SEEK-Jobs/adv-caja-x-api.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/SEEK-Jobs/adv-caja-x-api/issues"
-  },
-  "homepage": "https://github.com/SEEK-Jobs/adv-caja-x-api#readme"
+  "author": "Jack Grigg",
+  "license": "UNLICENSED"
 }
