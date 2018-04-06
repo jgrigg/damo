@@ -16,6 +16,7 @@ node_modules
 
 #delve
 debug.test
+debug
 
 #osx
 .DS_Store
